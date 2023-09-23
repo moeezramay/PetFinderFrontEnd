@@ -1,0 +1,45 @@
+/* loader.css */
+@keyframes loadingBar {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.loading-bar {
+    position: relative;
+    display: block;
+    min-width: 200px;
+    height: 6px;
+    border-radius: 20px;
+    background-color: #d3d3d3;
+    overflow: hidden;
+}
+
+.loading-bar::before {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 20px 0 0 20px;
+    background-color: #154fc3;
+    top: 0px;
+    left: 0px;
+    width: 0;
+    height: 100%;
+    animation: loadingBar 1.5s ease 1.2s forwards, fadeOut 2 ease 4.5s forwards;
+}
+
+.logo-container {
+    opacity: 1;
+    margin-bottom: 40px;
+}
