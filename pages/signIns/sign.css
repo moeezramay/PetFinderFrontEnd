@@ -1,13 +1,14 @@
-.parent {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0px;
-    left: 0px;
+
+.parent{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
     background-color: #c2e1fe;
 }
 
-.centerIt {
+.centerIt{
     width: 100%;
     height: 100%;
     display: flex;
@@ -15,7 +16,7 @@
     align-items: center;
 }
 
-.aboutSectionHeading {
+.aboutSectionHeading{
     z-index: 10;
     background-color: white;
     width: 900px;
@@ -23,9 +24,10 @@
     display: flex;
     border-radius: 30px;
     justify-content: center;
+
 }
 
-.aboutHeading {
+.aboutHeading{
     margin-top: 50px;
     display: block;
     margin-left: 110px;
@@ -33,26 +35,27 @@
     font-weight: 650;
 }
 
-.aboutSectionContainer {
+.aboutSectionContainer{
     width: 600px;
     margin-left: -22px;
     display: inline-block;
-    border-top-left-radius: 30px;
+    border-top-left-radius: 30px; 
     border-bottom-left-radius: 30px;
     justify-content: flex-start;
     background-color: #2759bc;
     align-items: center;
     flex-direction: column;
+  
 }
 
-.aboutDescription {
-    color: #f6fdff;
+.aboutDescription{
+    color:#f6fdff;
     margin-top: 10px;
     display: block;
     margin-left: 125px;
 }
 
-.OwnersSection {
+.OwnersSection{
     width: 310px;
     height: 100px;
     margin-top: 80px;
@@ -61,15 +64,15 @@
     flex-direction: row;
 }
 
-.HandLogo {
+.HandLogo{
     display: flex;
     margin-left: 100px;
 }
-.ShareLogo {
+.ShareLogo{
     display: flex;
     margin-left: 85px;
 }
-.LostPetsSection {
+.LostPetsSection{
     width: 310px;
     height: 100px;
     margin-top: 20px;
@@ -77,10 +80,10 @@
     display: flex;
     flex-direction: row;
 }
-.signUpSectionContainer {
+.signUpSectionContainer{
     width: 600px;
     margin-right: -24px;
-    border-top-right-radius: 30px;
+    border-top-right-radius: 30px; 
     border-bottom-right-radius: 30px;
     display: inline-block;
     justify-content: flex-start;
@@ -88,48 +91,50 @@
     align-items: center;
     flex-direction: column;
 }
-.signUpHeading {
+.signUpHeading{
     margin-top: 10px;
     color: #242424;
     font-weight: 790;
     cursor: default;
 }
-.waves {
+.waves{
     z-index: -1;
 }
-.logoAndSignUp {
+.logoAndSignUp{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 40px;
 }
-.signUpLogo {
+.signUpLogo{
     color: black;
     background-color: black;
 }
-.EmailAndPasswordAndForgotPass {
+.EmailAndPasswordAndForgotPass{
     width: 100%;
     display: block;
 }
-.EmailHeading {
+.EmailHeading{
+    margin-top: 10px;
+    margin-left: 30px;
+
+}
+.EmailTextField{
+    margin-top: 4px;
+    border-radius: 300px;
+    margin-left: 30px;
+
+}
+.PassHeading{
     margin-top: 10px;
     margin-left: 30px;
 }
-.EmailTextField {
+.PassTextField{
     margin-top: 4px;
     border-radius: 300px;
     margin-left: 30px;
 }
-.PassHeading {
-    margin-top: 10px;
-    margin-left: 30px;
-}
-.PassTextField {
-    margin-top: 4px;
-    border-radius: 300px;
-    margin-left: 30px;
-}
-.ForgotPassHeading {
+.ForgotPassHeading{
     display: block;
     color: #2759bc;
     text-decoration: underline;
@@ -138,27 +143,27 @@
     margin-top: 10px;
     margin-right: 40px;
 }
-.SeperatingLine {
+.SeperatingLine{
     margin-top: 60px;
-    width: 380px;
+    width:380px;
     height: 1px;
     background-color: grey;
     margin-left: auto;
     margin-right: auto;
     display: block;
 }
-.DontHaveAnAccountContainer {
-    width: 380px;
+.DontHaveAnAccountContainer{
+    width:380px;
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
-.DontHaveAnAccount {
+.DontHaveAnAccount{
     font-weight: 700;
 }
-.SignUp {
+.SignUp{
     text-decoration: underline;
-    color: #2759bc;
+    color:#2759bc;
     font-weight: 700;
 }
 
