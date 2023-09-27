@@ -1,0 +1,287 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.img-container-homePage {
+    position: absolute;
+    width: 100%;
+    height: 90vh;
+    z-index: -1;
+    filter: brightness(0.5) contrast(0.7) saturate(80%) hue-rotate(10deg);
+}
+.HomePage-Title-Text {
+    font-size: 100px;
+    font-weight: bolder;
+    display: block;
+    color: white;
+    margin-top: 15%;
+    padding-bottom: 172px;
+    opacity: 0;
+    transition: opacity 3s;
+    cursor: default;
+}
+
+.homePage-top-parent {
+    display: flex;
+    justify-content: center;
+}
+.styling {
+    margin-left: 10px;
+    padding-left: 10px;
+}
+.aboutus-home-parent {
+    margin-top: 7%;
+}
+.Aboutus-homePage {
+    font-size: 70px;
+    font-weight: bold;
+    color: #3d3636;
+    text-align: center;
+}
+
+.homePage-message-section {
+    display: flex;
+    margin-top: 4%;
+    margin-left: 4%;
+}
+.message-box-homePage {
+    display: block;
+    background-color: #2758bb;
+    margin-left: -10px;
+    width: 90%;
+    height: 350px;
+    margin-top: 0px;
+    border-top-left-radius: 8px;
+}
+.atPetfinder-home-text1 {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: cursive;
+    margin-left: 3%;
+    margin-top: 1%;
+}
+.description-messagebox-homepage {
+    font-size: 25px;
+    font-family: cursive;
+    margin-left: 3%;
+    margin-top: 1%;
+    color: white;
+    font-weight: bold;
+    line-height: 50px;
+}
+.message-span-homepage {
+    margin-left: 14%;
+    padding-right: 10px;
+}
+.line-homePage {
+    width: 100%;
+    height: 8px;
+    background-color: #2758bb;
+    margin-top: 10%;
+}
+.getStarted-title-text-homePage-parent {
+    text-align: center;
+    margin-top: 6%;
+}
+.getStarted-title-text-homePage {
+    font-size: 70px;
+    font-weight: bold;
+    color: #3d3636;
+}
+.span-getStarted-homePage {
+    color: #2758bb;
+}
+.getStated-homePage-section-Parent {
+    display: flex;
+    height: 450px;
+    margin-top: 4%;
+    justify-content: center;
+    align-items: center;
+}
+.foundPet-card-homePage {
+    background-color: #2758bb;
+    width: 25%;
+    height: 420px;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.foundPet-card-title {
+    text-align: center;
+    margin-top: 10%;
+    font-size: 35px;
+    color: white;
+    font-weight: bold;
+}
+.miniLogoWhite-foundPet-home {
+    margin-top: 6%;
+}
+.foundPet-card-descrip {
+    text-align: center;
+    margin-top: 4%;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+}
+/* Button and its effects */
+.foundPet-card-button {
+    position: relative;
+    cursor: pointer;
+    margin-top: 15%;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2758bb;
+    background-color: white;
+    border: none;
+    border-radius: 30px;
+    width: 248px;
+    height: 41px;
+    user-select: none;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s; /* Safari */
+}
+.foundPet-card-button:hover {
+    transition-duration: 0.5s;
+    background-color: #4170ce;
+    color: white;
+}
+
+.foundPet-card-button:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 4em;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    box-shadow: 0 0 20px 60px white;
+}
+
+.foundPet-card-button:active:after {
+    box-shadow: 0 0 0 0 white;
+    position: absolute;
+    border-radius: 4em;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transition: 0s;
+}
+
+.foundPet-card-button:active {
+    top: 1px;
+}
+.lostPet-card-homePage {
+    background-color: #2758bb;
+    width: 25%;
+    height: 420px;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lostPet-card-title {
+    text-align: center;
+    margin-top: 10%;
+    font-size: 35px;
+    color: white;
+    font-weight: bold;
+}
+.miniLogoWhite-lostPet-home {
+    margin-top: 6%;
+}
+.lostPet-card-descrip {
+    text-align: center;
+    margin-top: 4%;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+}
+/* Button and its effects */
+.lostPet-card-button {
+    position: relative;
+    cursor: pointer;
+    margin-top: 15%;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2758bb;
+    background-color: white;
+    border: none;
+    border-radius: 30px;
+    width: 248px;
+    height: 41px;
+    user-select: none;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s; /* Safari */
+}
+.lostPet-card-button:hover {
+    transition-duration: 0.5s;
+    background-color: #4170ce;
+    color: white;
+}
+
+.lostPet-card-button:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 4em;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    box-shadow: 0 0 20px 60px white;
+}
+
+.lostPet-card-button:active:after {
+    box-shadow: 0 0 0 0 white;
+    position: absolute;
+    border-radius: 4em;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transition: 0s;
+}
+
+.lostPet-card-button:active {
+    top: 1px;
+}
+
+/* Button and its Effects ^^ */
+
+.cards-or-homepage {
+    font-size: 40px;
+    font-weight: bold;
+    padding-left: 100px;
+    padding-right: 100px;
+    cursor: default;
+}
+
+.line-contact-home {
+    width: 100%;
+    height: 8px;
+    background-color: #2758bb;
+    margin-top: 7%;
+}
+@media (max-width: 700px) {
+    .img-container-homePage {
+        position: relative;
+        width: 100%;
+        height: 40vh;
+    }
+}

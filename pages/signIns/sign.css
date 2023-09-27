@@ -15,44 +15,79 @@
     align-items: center;
 }
 
-.aboutSectionHeading {
+.aboutSectionHeading-signIn {
     z-index: 10;
     background-color: white;
-    width: 900px;
+    width: 59%;
     height: 520px;
     display: flex;
     border-radius: 30px;
     justify-content: center;
 }
 
-.aboutHeading {
-    margin-top: 50px;
-    display: block;
-    margin-left: 110px;
-    color: #f6fdff;
-    font-weight: 650;
-}
-
 .aboutSectionContainer {
     width: 600px;
-    margin-left: -22px;
+    margin-left: -24px;
     display: inline-block;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     justify-content: flex-start;
-    background-color: #2759bc;
+    background: linear-gradient(to right, #548eff, #8b54ff);
     align-items: center;
     flex-direction: column;
 }
 
-.aboutDescription {
+.waves {
+    z-index: -1;
+}
+
+.SeperatingLine-signIn {
+    margin-top: 60px;
+    width: 380px;
+    height: 1px;
+    background-color: grey;
+    margin-left: auto;
+    margin-right: 30px;
+    display: block;
+}
+
+.aboutSectiondiv {
+    background-color: #2758bb;
+    width: 50%;
+    display: block;
+    margin-right: auto;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+}
+.signInSectiondiv {
+    background-color: #ffffff;
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+}
+.aboutHeading-signIn {
+    margin-top: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #f6fdff;
+    font-weight: bold;
+    font-size: 40px;
+}
+.aboutDescription-signIn {
     color: #f6fdff;
     margin-top: 10px;
     display: block;
-    margin-left: 125px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 25px;
 }
-
-.OwnersSection {
+.OwnersSection-signIn {
     width: 310px;
     height: 100px;
     margin-top: 80px;
@@ -60,110 +95,139 @@
     display: flex;
     flex-direction: row;
 }
-
-.HandLogo {
-    display: flex;
-    margin-left: 100px;
+.owner-title-signIn {
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
 }
-.ShareLogo {
-    display: flex;
-    margin-left: 85px;
+.ownerSubTitle-signIn {
+    margin-top: 5px;
+    color: white;
+    line-height: 20px;
 }
-.LostPetsSection {
+.hand-logo-signIn {
+    margin-left: auto;
+    margin-top: 2%;
+    margin-right: 2%;
+}
+.LostPetsSection-signIn {
     width: 310px;
     height: 100px;
-    margin-top: 20px;
     margin-left: 70px;
+    margin-top: 6%;
     display: flex;
     flex-direction: row;
 }
-.signUpSectionContainer {
-    width: 600px;
-    margin-right: -24px;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    display: inline-block;
-    justify-content: flex-start;
-    background-color: white;
-    align-items: center;
-    flex-direction: column;
-}
-.signUpHeading {
-    margin-top: 10px;
-    color: #242424;
-    font-weight: 790;
-    cursor: default;
-}
-.waves {
-    z-index: -1;
-}
-.logoAndSignUp {
+.logoAndsignIn-signIn {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 40px;
 }
-.signUpLogo {
-    color: black;
-    background-color: black;
-}
-.EmailAndPasswordAndForgotPass {
-    width: 100%;
-    display: block;
-}
-.EmailHeading {
-    margin-top: 10px;
-    margin-left: 30px;
-}
-.EmailTextField {
-    margin-top: 4px;
-    border-radius: 300px;
-    margin-left: 30px;
-}
-.PassHeading {
-    margin-top: 10px;
-    margin-left: 30px;
-}
-.PassTextField {
-    margin-top: 4px;
-    border-radius: 300px;
-    margin-left: 30px;
-}
-.ForgotPassHeading {
-    display: block;
-    color: #2759bc;
-    text-decoration: underline;
-    float: right;
-    font-weight: 700;
-    margin-top: 10px;
-    margin-right: 40px;
-}
-.SeperatingLine {
-    margin-top: 60px;
-    width: 380px;
-    height: 1px;
-    background-color: grey;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
-.DontHaveAnAccountContainer {
-    width: 380px;
+
+.logo-parent-signIn {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 8%;
 }
-.DontHaveAnAccount {
-    font-weight: 700;
+.signInHeading-signIn {
+    margin-top: 10px;
+    color: #242424;
+    font-weight: bolder;
+    cursor: default;
+    font-size: 30px;
+    display: block;
+    text-align: center;
 }
-.SignUp {
-    text-decoration: underline;
-    color: #2759bc;
-    font-weight: 700;
+.email-heading-signIn {
+    margin-top: 2%;
+    margin-left: 7%;
 }
-
-.signInButton {
+.email-input-signIn {
+    margin-left: 8%;
+    margin-top: 2%;
+    border-radius: 8px;
+    width: 85%;
+    height: 35px;
+    border: 1px solid #707070;
+    padding-left: 10px;
+}
+.email-input-signIn::placeholder {
+    transition: color 0.3s ease; /* Add a transition to the color property */
+}
+.email-input-signIn:focus {
+    border: none;
+    outline: 1px solid #707070;
+}
+.email-input-signIn:focus::placeholder {
+    color: transparent;
+}
+.singup-Button-signIn {
     display: block;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 20px;
+    margin-top: 5%;
+    width: 87%;
+    height: 45px;
+    border-radius: 8px;
+    border: 1px solid black;
+    background-color: #2758bb;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.already-acc-signIn {
+    text-align: center;
+    margin-top: 8px;
+}
+.link-sign-signIn {
+    margin-top: 8px;
+    margin-left: 5px;
+    color: #154fc3;
+    cursor: pointer;
+    font-weight: bold;
+}
+.parent-acc-signIn {
+    display: flex;
+    justify-content: center;
+}
+.forgotPass-signIn {
+    display: block;
+    text-align: end;
+    padding-right: 20px;
+    margin-top: 10px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    color: #154fc3;
+}
+@media (max-width: 700px) {
+    .aboutSectionHeading-signIn {
+        width: 100%;
+        height: 80%;
+    }
+    .owner-title-signIn {
+        font-size: 20px;
+    }
+    .OwnersSection-signIn {
+        margin-left: 5%;
+        font-size: 15px;
+    }
+    .hand-logo-signIn {
+        margin-top: 1%;
+        margin-left: auto;
+        margin-right: 29%;
+    }
+    .LostPetsSection-signIn {
+        display: flex;
+        font-size: 15px;
+        margin-left: 5%;
+    }
+    .aboutHeading-signIn {
+        font-size: 30px;
+    }
+    .aboutDescription-signIn {
+        font-size: 20px;
+    }
 }
