@@ -1,14 +1,13 @@
-
-.parent{
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0px;
-    left:0px;
+.parent {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
     background-color: #c2e1fe;
 }
 
-.centerIt{
+.centerIt {
     width: 100%;
     height: 100%;
     display: flex;
@@ -16,11 +15,7 @@
     align-items: center;
 }
 
-<<<<<<< HEAD
 .aboutSectionHeading-signIn {
-=======
-.aboutSectionHeading{
->>>>>>> ab8a3a9612708d140712e09aafe34ee5230db838
     z-index: 10;
     background-color: white;
     width: 59%;
@@ -28,35 +23,20 @@
     display: flex;
     border-radius: 30px;
     justify-content: center;
-
 }
 
-<<<<<<< HEAD
 .aboutSectionContainer {
-=======
-.aboutHeading{
-    margin-top: 50px;
-    display: block;
-    margin-left: 110px;
-    color: #f6fdff;
-    font-weight: 650;
-}
-
-.aboutSectionContainer{
->>>>>>> ab8a3a9612708d140712e09aafe34ee5230db838
     width: 600px;
     margin-left: -24px;
     display: inline-block;
-    border-top-left-radius: 30px; 
+    border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     justify-content: flex-start;
     background: linear-gradient(to right, #548eff, #8b54ff);
     align-items: center;
     flex-direction: column;
-  
 }
 
-<<<<<<< HEAD
 .waves {
     z-index: -1;
 }
@@ -99,10 +79,6 @@
 }
 .aboutDescription-signIn {
     color: #f6fdff;
-=======
-.aboutDescription{
-    color:#f6fdff;
->>>>>>> ab8a3a9612708d140712e09aafe34ee5230db838
     margin-top: 10px;
     display: block;
     margin-top: 15px;
@@ -111,12 +87,7 @@
     text-align: center;
     font-size: 25px;
 }
-<<<<<<< HEAD
 .OwnersSection-signIn {
-=======
-
-.OwnersSection{
->>>>>>> ab8a3a9612708d140712e09aafe34ee5230db838
     width: 310px;
     height: 100px;
     margin-top: 80px;
@@ -124,7 +95,6 @@
     display: flex;
     flex-direction: row;
 }
-<<<<<<< HEAD
 .owner-title-signIn {
     font-size: 30px;
     color: white;
@@ -141,18 +111,6 @@
     margin-right: 2%;
 }
 .LostPetsSection-signIn {
-=======
-
-.HandLogo{
-    display: flex;
-    margin-left: 100px;
-}
-.ShareLogo{
-    display: flex;
-    margin-left: 85px;
-}
-.LostPetsSection{
->>>>>>> ab8a3a9612708d140712e09aafe34ee5230db838
     width: 310px;
     height: 100px;
     margin-left: 70px;
@@ -160,94 +118,18 @@
     display: flex;
     flex-direction: row;
 }
-<<<<<<< HEAD
 .logoAndsignIn-signIn {
-=======
-.signUpSectionContainer{
-    width: 600px;
-    margin-right: -24px;
-    border-top-right-radius: 30px; 
-    border-bottom-right-radius: 30px;
-    display: inline-block;
-    justify-content: flex-start;
-    background-color: white;
-    align-items: center;
-    flex-direction: column;
-}
-.signUpHeading{
-    margin-top: 10px;
-    color: #242424;
-    font-weight: 790;
-    cursor: default;
-}
-.waves{
-    z-index: -1;
-}
-.logoAndSignUp{
->>>>>>> ab8a3a9612708d140712e09aafe34ee5230db838
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 40px;
 }
-<<<<<<< HEAD
 
 .logo-parent-signIn {
-=======
-.signUpLogo{
-    color: black;
-    background-color: black;
-}
-.EmailAndPasswordAndForgotPass{
-    width: 100%;
-    display: block;
-}
-.EmailHeading{
-    margin-top: 10px;
-    margin-left: 30px;
-
-}
-.EmailTextField{
-    margin-top: 4px;
-    border-radius: 300px;
-    margin-left: 30px;
-
-}
-.PassHeading{
-    margin-top: 10px;
-    margin-left: 30px;
-}
-.PassTextField{
-    margin-top: 4px;
-    border-radius: 300px;
-    margin-left: 30px;
-}
-.ForgotPassHeading{
-    display: block;
-    color: #2759bc;
-    text-decoration: underline;
-    float: right;
-    font-weight: 700;
-    margin-top: 10px;
-    margin-right: 40px;
-}
-.SeperatingLine{
-    margin-top: 60px;
-    width:380px;
-    height: 1px;
-    background-color: grey;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
-.DontHaveAnAccountContainer{
-    width:380px;
->>>>>>> ab8a3a9612708d140712e09aafe34ee5230db838
     display: flex;
     justify-content: center;
     margin-top: 8%;
 }
-<<<<<<< HEAD
 .signInHeading-signIn {
     margin-top: 10px;
     color: #242424;
@@ -260,15 +142,6 @@
 .email-heading-signIn {
     margin-top: 2%;
     margin-left: 7%;
-=======
-.DontHaveAnAccount{
-    font-weight: 700;
-}
-.SignUp{
-    text-decoration: underline;
-    color:#2759bc;
-    font-weight: 700;
->>>>>>> ab8a3a9612708d140712e09aafe34ee5230db838
 }
 .email-input-signIn {
     margin-left: 8%;
@@ -292,7 +165,6 @@
 .singup-Button-signIn {
     display: block;
     margin-left: auto;
-<<<<<<< HEAD
     margin-right: 20px;
     margin-top: 5%;
     width: 87%;
@@ -359,7 +231,3 @@
         font-size: 20px;
     }
 }
-=======
-    margin-right: auto;
-}
->>>>>>> ab8a3a9612708d140712e09aafe34ee5230db838
