@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./signup.css";
 import Waves from "../../public/waves";
 import MiniLogo from "../../public/miniLogoBlacksvg";
@@ -7,6 +7,15 @@ import ShareIcon from "../../public/shareIconsvg";
 import { useRouter } from "next/navigation";
 
 function SignUp() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [message, setMessage] = useState(""); //Sets message from backend
+
+    const jwt = require("jsonwebtoken");
+
+    var router = useRouter();
+
+    //Checks if server is online-------
     useEffect(() => {
         try {
             fetch("http://localhost:8080/api/home")
@@ -16,28 +25,53 @@ function SignUp() {
                     }
                     return response.json();
                 })
-                .then((data) => {
-                    // Process the data here
-                    console.log(data);
-                })
-                .catch((error) => {
-                    // Handle errors from the fetch or the response
-                    console.error("Errorsss:", error);
+                .then((arr1) => {
+                    console.log(arr1.message);
                 });
         } catch (error) {
             console.log("error: ", error);
         }
     }, []);
+    //--------
 
-    var router = useRouter();
-
+    //Shifts to signIn
     var shiftSignIn = () => {
         router.push("../signIns/signIn");
     };
 
-    const handleSubmit = (e) => {
+    //Sends data and verifies user
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        //Add functionality here
+
+        //Send data to backend
+        try {
+            const res = await fetch("http://localhost:8080/api/verify", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            if (!res.ok) {
+                const errorMessage = await res.json();
+                console.error("Error if:", errorMessage.error);
+            } else {
+                const response = await res.json();
+                const token = response.token;
+                console.log(token);
+                if (token) {
+                    const decodedMessage = jwt.decode(token);
+                    setMessage("Welcome  " + decodedMessage.username);
+                    console.log(message);
+                } else {
+                    setMessage("Something went wrong");
+                }
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
+
         router.push("../homePage/home");
     };
 
@@ -96,6 +130,7 @@ function SignUp() {
                                 <input
                                     className="email-input-signUp"
                                     placeholder="Type Your Email"
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                                 <div className="email-heading-signUp">
                                     Password
@@ -103,6 +138,9 @@ function SignUp() {
                                 <input
                                     className="email-input-signUp"
                                     placeholder="Type Your Password"
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
                                 />
                                 <div className="email-heading-signUp">
                                     Confirm Password

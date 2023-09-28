@@ -12,6 +12,18 @@ function Home() {
     var router = useRouter();
     const titleTextRef = useRef(null);
 
+    //Checks for token
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+
+        if (token === null && !token) {
+            console.log("token not found");
+            router.push("../signUp/signup");
+        } else {
+            console.log("Token found!");
+        }
+    }, []);
+
     //Fade Effect for title text
     useEffect(() => {
         if (titleTextRef.current) {
