@@ -8,11 +8,25 @@ import { useRouter } from "next/navigation";
 
 function SignUp() {
     useEffect(() => {
-        fetch("http://localhost:8080/api/home")
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-            });
+        try {
+            fetch("http://localhost:8080/api/home")
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    // Process the data here
+                    console.log(data);
+                })
+                .catch((error) => {
+                    // Handle errors from the fetch or the response
+                    console.error("Errorsss:", error);
+                });
+        } catch (error) {
+            console.log("error: ", error);
+        }
     }, []);
 
     var router = useRouter();

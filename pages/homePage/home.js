@@ -26,7 +26,7 @@ function Home() {
                     <NavBar />
                     {/* Image ------- */}
                     <div className="img-container-homePage">
-                        <Image src="/catI.jpg" alt="Cat" fill />
+                        <Image src="/catI.jpg" alt="Cat" layout="fill" />
                     </div>
                     {/* Image ------- */}
                     <div className="nav-bar-parent-home"></div>

@@ -55,3 +55,34 @@
     margin-right: 4%;
     margin-top: 4%;
 }
+@media (max-width: 700px) {
+    .line-contact-home {
+        width: 200%;
+    }
+    .footer-message-box {
+        width: 200%;
+        margin-left: 60%;
+        padding-left: 100px;
+        height: 250px;
+        margin-top: 40px;
+    }
+    .email1-footer {
+        font-size: 20px;
+        width: 100%;
+        margin-left: -8%;
+    }
+    .contact-footer {
+        font-size: 25px;
+        margin-right: 8%;
+    }
+    .messagecorner-footer {
+        margin-top: 13%;
+        z-index: -1;
+    }
+    .mat-footer {
+        display: none;
+    }
+    .contactUS-logo-home {
+        display: none;
+    }
+}

@@ -24,7 +24,6 @@ body {
     margin-top: 3%;
     right: 0;
     display: flex;
-    display: flex;
     align-items: center;
 }
 .nav-about {
@@ -40,4 +39,15 @@ body {
 }
 
 .nav-getStarted {
+}
+@media (max-width: 700px) {
+    .contact-parent {
+        right: 0;
+    }
+    .nav-bar-parent {
+        display: flex;
+    }
+    .nav-center {
+        width: 200%;
+    }
 }
