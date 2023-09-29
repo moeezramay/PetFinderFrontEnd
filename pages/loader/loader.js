@@ -20,7 +20,7 @@ function Loader() {
 
     const NextPage = async () => {
         await delay(2000);
-        router.push("signUp/signup");
+        router.push("../signUp/signup");
     };
 
     useEffect(() => {

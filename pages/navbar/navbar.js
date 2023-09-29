@@ -1,8 +1,10 @@
 import "./navbar.css";
 import React, { useEffect, useRef, useState } from "react";
 import MiniLogoBlue from "../../public/miniLogoBluesvg";
+import { useRouter } from "next/navigation";
 
 function NavBar() {
+    var router = useRouter();
     const [scrolling, setScrolling] = useState(false);
 
     const scrollPage = (x) => {
@@ -12,6 +14,10 @@ function NavBar() {
             top: scrollDistance,
             behavior: "smooth",
         });
+    };
+    const logout = () => {
+        localStorage.removeItem("token");
+        router.push("/Loader/loader");
     };
     return (
         <div className="nav-bar-parent">
@@ -46,6 +52,18 @@ function NavBar() {
                         }}
                     >
                         Contact
+                    </div>
+                    <div
+                        className="nav-about"
+                        style={{
+                            cursor: "pointer",
+                            marginRight: "20px",
+                            color: "#2758bb",
+                            marginLeft: "-20px",
+                        }}
+                        onClick={logout}
+                    >
+                        Logout
                     </div>
                 </div>
             </div>
