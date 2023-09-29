@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./sign.css";
 import Waves from "./../../public/waves";
 import Logo from "./../../public/signInlogo";
@@ -8,6 +8,11 @@ import MiniLogo from "../../public/miniLogoBlacksvg";
 import { useRouter } from "next/navigation";
 
 function signIn() {
+    const [userFound, setUserFound] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const jwt = require("jsonwebtoken");
+
     var router = useRouter();
 
     var shiftSignUp = (e) => {
@@ -16,9 +21,51 @@ function signIn() {
         router.push("../signUp/signup");
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         //Add functionality here
+
+        if (
+            username === "" ||
+            password === "" ||
+            username === " " ||
+            password === " "
+        ) {
+            return;
+        }
+        try {
+            const res = await fetch("http://localhost:8080/sign/signIn", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            if (!res.ok) {
+                const errorMessage = await res.json();
+                console.error("Error if:", errorMessage.error);
+                return;
+            }
+            const response = await res.json();
+            console.log(
+                "RESPONSE, TOKEN: " +
+                    response.token +
+                    " MESSAGE: " +
+                    response.message
+            );
+            const token = response.token;
+            const msg = response.message;
+            setUserFound(msg);
+            console.log("message: ", msg);
+            if (token) {
+                const decodedMessage = jwt.decode(token);
+                localStorage.setItem("token", token); //Sets token in local storage
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
+
         router.push("../homePage/home");
     };
 
@@ -72,11 +119,14 @@ function signIn() {
                             <div className="signInHeading-signIn">SignIn</div>
                             <div className="email-pass-confirm-section-signIn">
                                 <div className="email-heading-signIn">
-                                    Email
+                                    Username
                                 </div>
                                 <input
                                     className="email-input-signIn"
-                                    placeholder="Type Your Email"
+                                    placeholder="Type Your Username"
+                                    onChange={(e) => {
+                                        setUsername(e.target.value);
+                                    }}
                                 />
                                 <div className="email-heading-signIn">
                                     Password
@@ -84,6 +134,10 @@ function signIn() {
                                 <input
                                     className="email-input-signIn"
                                     placeholder="Type Your Password"
+                                    type="password"
+                                    onChange={(e) => {
+                                        setPassword(e.target.value);
+                                    }}
                                 />
                             </div>
                             <div className="forgotPass-signIn">

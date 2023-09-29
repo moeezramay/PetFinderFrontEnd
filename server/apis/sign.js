@@ -67,6 +67,35 @@ module.exports = app.post("/signUp", async (req, res) => {
     });
 });
 
+module.exports = app.post("/signIn", async (req, res) => {
+    console.log("function called", req.body); //works
+    if (!req.body) {
+        res.status(400).json({ error: "Invalid request" });
+        return;
+    }
+
+    const { username, password } = req.body;
+
+    //Check if user already exists
+
+    const existingUser = await User.findOne({ username: username });
+
+    if (!existingUser) {
+        return res.json({ message: "User does not exist!" });
+    }
+
+    //Send back token and message
+    res.json({
+        message: "User found!",
+        token: jwt.sign(
+            {
+                username: username,
+            },
+            KEY
+        ),
+    });
+});
+
 //Checks if server is running
 app.get("/check", (req, res) => {
     res.json({ message: "Server is up!" });
