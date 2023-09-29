@@ -7,26 +7,31 @@ import ShareIcon from "../../public/shareIconsvg";
 import { useRouter } from "next/navigation";
 
 function SignUp() {
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState(""); //Sets message from backend
+    const [isValid, setIsValid] = useState(Boolean);
 
     const jwt = require("jsonwebtoken");
+
+    const usernamePattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const regix = /^(?=.*\d)(?=.*[A-Z])[A-Za-z\d]{7,14}$/;
 
     var router = useRouter();
 
     //Checks if server is online-------
     useEffect(() => {
         try {
-            fetch("http://localhost:8080/api/home")
+            fetch("http://localhost:8080/sign/check")
                 .then((response) => {
+                    console.log("response: ", response.message);
                     if (!response.ok) {
                         throw new Error("Network response was not ok");
                     }
                     return response.json();
                 })
-                .then((arr1) => {
-                    console.log(arr1.message);
+                .then((res) => {
+                    console.log(res.message);
                 });
         } catch (error) {
             console.log("error: ", error);
@@ -39,18 +44,27 @@ function SignUp() {
         router.push("../signIns/signIn");
     };
 
+    const checkpass = () => {
+        setIsValid(regix.test(password));
+        console.log("The state is ", isValid);
+    };
+
+    //updates check for pass (due to async nature of states)
+    useEffect(() => {
+        checkpass();
+    }, [password]);
     //Sends data and verifies user
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log("VALIDITY", isValid);
         //Send data to backend
         try {
-            const res = await fetch("http://localhost:8080/api/verify", {
+            const res = await fetch("http://localhost:8080/sign/signUp", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ username, password }),
             });
 
             if (!res.ok) {
@@ -63,6 +77,7 @@ function SignUp() {
                 if (token) {
                     const decodedMessage = jwt.decode(token);
                     setMessage("Welcome  " + decodedMessage.username);
+                    localStorage.setItem("token", token); //Sets token in local storage
                     console.log(message);
                 } else {
                     setMessage("Something went wrong");
@@ -71,7 +86,6 @@ function SignUp() {
         } catch (error) {
             console.error("Error:", error);
         }
-
         router.push("../homePage/home");
     };
 
@@ -125,12 +139,14 @@ function SignUp() {
                             <div className="signUpHeading-signUp">SignUp</div>
                             <div className="email-pass-confirm-section-signUp">
                                 <div className="email-heading-signUp">
-                                    Email
+                                    Username
                                 </div>
                                 <input
                                     className="email-input-signUp"
-                                    placeholder="Type Your Email"
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="Type Your Username"
+                                    onChange={(e) =>
+                                        setUsername(e.target.value)
+                                    }
                                 />
                                 <div className="email-heading-signUp">
                                     Password

@@ -17,9 +17,8 @@
 
 .aboutSectionHeading-signIn {
     z-index: 10;
-    background-color: white;
     width: 59%;
-    height: 520px;
+    height: auto;
     display: flex;
     border-radius: 30px;
     justify-content: center;
@@ -42,12 +41,12 @@
 }
 
 .SeperatingLine-signIn {
-    margin-top: 60px;
-    width: 380px;
+    margin-top: 20px;
+    width: 85%;
     height: 1px;
     background-color: grey;
     margin-left: auto;
-    margin-right: 30px;
+    margin-right: 6%;
     display: block;
 }
 
@@ -165,7 +164,7 @@
 .singup-Button-signIn {
     display: block;
     margin-left: auto;
-    margin-right: 20px;
+    margin-right: 5%;
     margin-top: 5%;
     width: 87%;
     height: 45px;
@@ -192,11 +191,12 @@
 .parent-acc-signIn {
     display: flex;
     justify-content: center;
+    padding-bottom: 10px;
 }
 .forgotPass-signIn {
     display: block;
     text-align: end;
-    padding-right: 20px;
+    margin-right: 5%;
     margin-top: 10px;
     text-decoration: underline;
     text-underline-offset: 3px;

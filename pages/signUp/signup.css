@@ -17,9 +17,8 @@
 
 .aboutSectionHeading-signUp {
     z-index: 10;
-    background-color: white;
     width: 59%;
-    height: 520px;
+    height: auto;
     display: flex;
     border-radius: 30px;
     justify-content: center;
@@ -43,11 +42,11 @@
 
 .SeperatingLine-signUp {
     margin-top: 20px;
-    width: 380px;
+    width: 85%;
     height: 1px;
     background-color: grey;
     margin-left: auto;
-    margin-right: 30px;
+    margin-right: 6%;
     display: block;
 }
 
@@ -60,9 +59,10 @@
     border-top-left-radius: 30px;
 }
 .signUpSectiondiv {
-    background-color: #ffffff;
+    background-color: white;
     width: 50%;
-    display: block;
+    display: flex;
+    flex-direction: column;
     margin-left: auto;
     border-bottom-right-radius: 30px;
     border-top-right-radius: 30px;
@@ -165,7 +165,7 @@
 .singup-Button-signUp {
     display: block;
     margin-left: auto;
-    margin-right: 20px;
+    margin-right: 5%;
     margin-top: 5%;
     width: 87%;
     height: 45px;
@@ -181,6 +181,7 @@
 .already-acc-signUp {
     text-align: center;
     margin-top: 8px;
+    padding-bottom: 10px;
 }
 .link-sign-signUp {
     margin-top: 8px;
@@ -195,6 +196,7 @@
 }
 @media (max-width: 700px) {
     .aboutSectionHeading-signUp {
+        margin-top: -30%;
         width: 100%;
     }
     .owner-title-signUp {
@@ -205,9 +207,7 @@
         font-size: 15px;
     }
     .hand-logo-signUp {
-        margin-top: 1%;
-        margin-left: auto;
-        margin-right: 18%;
+        display: none;
     }
     .LostPetsSection-signUp {
         display: flex;
