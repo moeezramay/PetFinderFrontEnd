@@ -12,6 +12,11 @@ function Home() {
     var router = useRouter();
     const titleTextRef = useRef(null);
 
+    const shiftToFound = (e) => {
+        e.preventDefault();
+        router.push("../Found/found");
+    };
+
     //Checks for token
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -120,7 +125,10 @@ function Home() {
                             Help others find
                             <br /> their missing pet
                         </div>
-                        <button className="foundPet-card-button">
+                        <button
+                            className="foundPet-card-button"
+                            onClick={(e) => shiftToFound(e)}
+                        >
                             Found A Pet
                         </button>
                     </div>
