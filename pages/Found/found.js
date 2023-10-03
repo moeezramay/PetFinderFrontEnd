@@ -20,8 +20,20 @@ function Found() {
     //------------------^^^^^^^^^^^^^^^^-------------------------
 
     const handleImage = (e) => {
-        console.log(e.target.files);
-        setImage(e.target.files[0]);
+        // console.log(e.target.files);
+        // setImage(e.target.files[0]);
+        console.log("Handle image called");
+        const selectedFile = e.target.files[0];
+        console.log("Selected file:", selectedFile);
+        if (selectedFile) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const imageData = e.target.result;
+                console.log("imageData: ", imageData);
+                setImage(imageData); // Store the Base64-encoded image data
+            };
+            reader.readAsDataURL(selectedFile);
+        }
     };
 
     //Checks for token
@@ -40,13 +52,6 @@ function Found() {
     const HandleSubmit = async (e) => {
         e.preventDefault();
         console.log("submit pressed");
-
-        const formData = new FormData();
-
-        // formData.append("cat", catName);
-        // formData.append("owner", fullName);
-        formData.append("image", image);
-
         try {
             const res = await fetch(
                 "http://localhost:8080/upload/uploadedData",
@@ -55,7 +60,7 @@ function Found() {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: formData,
+                    body: JSON.stringify({ catName, fullName, image }),
                 }
             );
 
@@ -156,6 +161,7 @@ function Found() {
                             </div>
                             <input
                                 placeholder="Enter cat name"
+                                name="catName"
                                 className={`radio-pannel-found ${
                                     radio.includes("Yes")
                                         ? "yes-radio-found"
@@ -222,6 +228,7 @@ function Found() {
                             <input
                                 placeholder="Enter your name"
                                 className="yes-radio-found2"
+                                name="fullName"
                                 onChange={(e) => {
                                     setFullName(e.target.value);
                                 }}

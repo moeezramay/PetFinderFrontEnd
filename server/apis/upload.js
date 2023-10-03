@@ -4,7 +4,6 @@ const app = express();
 const cors = require("cors");
 const PORT = 8080;
 const multer = require("multer");
-const path = require("path");
 const mongoose = require("mongoose");
 
 //------MongoDB Initialization------->
@@ -48,35 +47,55 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 //------------------^^^^^^^^^^^^^^^^^^^-----------------------------
+const fs = require("fs");
+const path = require("path");
 
-module.exports = app.post(
-    "/uploadedData",
-    upload.single("petImage"),
-    async (req, res) => {
-        console.log("function called for upload reqest BODY:");
-
-        if (!req.body) {
-            res.status(400).json({ error: "Invalid request" });
-            return;
-        }
-        return res.json({ message: "Checked" });
-        // const { cat, owner, img } = req.body;
-
-        // console.log("cat: " + cat + " owner: " + owner + "img: " + img);
-
-        // var dataCreate = new UploadData({
-        //     fullname: owner,
-        //     catName: cat,
-        //     image: imag,
-        // });
-        // try {
-        //     await dataCreate.save();
-        //     res.json({
-        //         message: "Data sent!",
-        //     });
-        // } catch (error) {
-        //     console.error("Error saving data:", error);
-        //     res.status(500).json({ error: "Internal server error" });
-        // }
+module.exports = app.post("/uploadedData", async (req, res) => {
+    if (!req.body) {
+        res.status(400).json({ error: "Invalid request" });
+        return;
     }
-);
+
+    console.log("Image:", req.body.image);
+    const imageBase64 = req.body.image;
+
+    const timestamp = Date.now();
+    const filename = `${timestamp}.jpeg`;
+
+    const uploadDir = path.join(__dirname, "images");
+
+    if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true });
+    }
+
+    try {
+        const imageData = Buffer.from(imageBase64.split(",")[1], "base64"); // Remove the data:image/jpeg;base64, part
+        fs.writeFileSync(path.join(uploadDir, filename), imageData);
+
+        res.json({
+            message: "Data sent!",
+        });
+    } catch (error) {
+        console.error("Error saving data:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+
+    // const { cat, owner, img } = req.body;
+
+    // console.log("cat: " + cat + " owner: " + owner + "img: " + img);
+
+    // var dataCreate = new UploadData({
+    //     fullname: owner,
+    //     catName: cat,
+    //     image: imag,
+    // });
+    // try {
+    //     await dataCreate.save();
+    //     res.json({
+    //         message: "Data sent!",
+    //     });
+    // } catch (error) {
+    //     console.error("Error saving data:", error);
+    //     res.status(500).json({ error: "Internal server error" });
+    // }
+});

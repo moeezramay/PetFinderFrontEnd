@@ -21,7 +21,7 @@ function SignUp() {
 
     const jwt = require("jsonwebtoken");
 
-    const usernamePattern = /^[a-zA-Z0-9]{5,10}$/;
+    const usernamePattern = /^[a-zA-Z0-9]{5,15}$/;
     const regix = /^(?=.*\d)(?=.*[A-Z])[A-Za-z\d]{7,14}$/;
 
     var router = useRouter();
