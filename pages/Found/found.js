@@ -5,6 +5,7 @@ import BigLogoWhite from "../../public/bigWhiteLogosvg";
 
 function Found() {
     const [radio, setRadio] = useState("No");
+    var router = useRouter();
 
     //-------------------Storing data to be uploaded-------------
     const [catName, setCatName] = useState("");
@@ -20,8 +21,6 @@ function Found() {
     //------------------^^^^^^^^^^^^^^^^-------------------------
 
     const handleImage = (e) => {
-        // console.log(e.target.files);
-        // setImage(e.target.files[0]);
         console.log("Handle image called");
         const selectedFile = e.target.files[0];
         console.log("Selected file:", selectedFile);
@@ -60,7 +59,18 @@ function Found() {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ catName, fullName, image }),
+                    body: JSON.stringify({
+                        catName,
+                        fullName,
+                        image,
+                        furColor1,
+                        furColor2,
+                        eyeColor1,
+                        eyeColor2,
+                        location,
+                        contact,
+                        email,
+                    }),
                 }
             );
 
@@ -80,7 +90,7 @@ function Found() {
             console.error("Error:", error);
         }
 
-        //router.push("../homePage/home");
+        router.push("../homePage/home");
     };
 
     //------------------^^^^^^^^^^^^^^^^-------------------------
@@ -113,7 +123,7 @@ function Found() {
                     </div>
                     <div className="parent-options-pannel-found">
                         <div className="option-pannel-subparent-found">
-                            <div className="option-pannel-found">
+                            <div className="option-pannel-found1">
                                 Does the cat have a name tag?
                             </div>
                             <div className="radio-container-found">
@@ -124,6 +134,7 @@ function Found() {
                                         marginLeft: "2px",
                                         marginBottom: "4px",
                                     }}
+                                    className="radio-yes-found"
                                 >
                                     <input
                                         type="radio"
@@ -154,9 +165,10 @@ function Found() {
                                         }}
                                         onClick={(e) => {
                                             setRadio(e.target.value);
+                                            setCatName("");
                                         }}
                                     />
-                                    No
+                                    <span className="radio-no-found">No</span>
                                 </div>
                             </div>
                             <input
@@ -181,6 +193,7 @@ function Found() {
                                 onChange={(e) => {
                                     setfurColor1(e.target.value);
                                 }}
+                                required
                             />
                         </div>
                         <div className="option-pannel-subparent-found2">
@@ -205,6 +218,7 @@ function Found() {
                                 onChange={(e) => {
                                     setEyeColor1(e.target.value);
                                 }}
+                                required
                             />
                         </div>
                         <div className="option-pannel-subparent-found2">
@@ -232,6 +246,7 @@ function Found() {
                                 onChange={(e) => {
                                     setFullName(e.target.value);
                                 }}
+                                required
                             />
                         </div>
                         <div className="option-pannel-subparent-found2">
@@ -245,6 +260,7 @@ function Found() {
                                 onChange={(e) => {
                                     setLocation(e.target.value);
                                 }}
+                                required
                             />
                         </div>
                         <div className="option-pannel-subparent-found2">
@@ -258,6 +274,7 @@ function Found() {
                                 onChange={(e) => {
                                     setContact(e.target.value);
                                 }}
+                                required
                             />
                         </div>
                         <div className="option-pannel-subparent-found2">
@@ -283,7 +300,9 @@ function Found() {
                                 name="petImage"
                                 accept="image/*"
                                 onChange={handleImage}
+                                className="file-upload-found"
                                 style={{ color: "white" }}
+                                required
                             />
                         </div>
                         <div className="save-button-parent-found">
