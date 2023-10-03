@@ -12,6 +12,13 @@ function Home() {
     var router = useRouter();
     const titleTextRef = useRef(null);
 
+    var shiftToFind = (e) => {
+        
+        e.preventDefault();
+        router.push("../Find/find");
+    };
+
+
     const shiftToFound = (e) => {
         e.preventDefault();
         router.push("../Found/found");
@@ -106,7 +113,9 @@ function Home() {
                             Find your pet in
                             <br /> our mission section
                         </div>
-                        <button className="lostPet-card-button">
+                        <button
+                         className="lostPet-card-button"
+                         onClick={(e) => shiftToFind(e)} >
                             Find My Pet
                         </button>
                     </div>
