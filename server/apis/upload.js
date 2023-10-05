@@ -32,7 +32,7 @@ var Schema = mongoose.Schema;
 var UploadSchema = new Schema({
     fullname: String,
     catName: String,
-    imageData: String,
+    imageSrc: String,
     furColor1: String,
     furColor2: String,
     eyeColor1: String,
@@ -50,18 +50,18 @@ var UploadData = mongoose.model("UploadData", UploadSchema, "UploadData");
 
 const crypto = require("crypto");
 
-const secretKey = process.env.SECRET_KEY;
-
+const secretKey = crypto.randomBytes(32);
+const iv = crypto.randomBytes(16);
 //----------------^^^^^^^^^^^^^^^^^^^^^^^^^----------------->
 
 //---------------------Data Upload to db------------------->
 
 module.exports = app.post("/uploadedData", async (req, res) => {
+    console.log("function called");
     if (!req.body || !req.body.image) {
         res.status(400).json({ error: "Invalid request" });
         return;
     }
-    console.log("KEY: " + secretKey);
     const catName = req.body.catName;
     const fullName = req.body.fullName;
     const imageBase64 = req.body.image;
@@ -99,13 +99,16 @@ module.exports = app.post("/uploadedData", async (req, res) => {
     const encryptedEmail = encryptData(email, secretKey);
     const encryptedContact = encryptData(contact, secretKey);
     const encryptedLocation = encryptData(location, secretKey);
-
-    const imageData = imageBase64.split(",")[1];
+    console.log("works till encryption");
+    const imageData = req.body.image;
+    console.log("works till image data is defined");
+    const encodedImageData = encodeURIComponent(imageData);
+    console.log("works till encodedImageData is defined");
 
     var dataCreate = new UploadData({
         fullname: encryptedFullName,
         catName: encryptedCatName,
-        imageData: imageData,
+        imageSrc: encodedImageData,
         furColor1: furColor1,
         furColor2: furColor2,
         eyeColor1: eyeColor1,
@@ -128,11 +131,57 @@ module.exports = app.post("/uploadedData", async (req, res) => {
 
 //----------------^^^^^^^^^^^^^^^^^^^^^^^^^----------------->
 
-// Function to encrypt data using AES encryption
+// Function to encrypt data using AES (Advanced Encryption Standard) encryption
 function encryptData(data, key) {
-    const iv = crypto.randomBytes(16);
-    const cipher = crypto.createCipheriv("aes-256-cbc", key, iv);
-    let encryptedData = cipher.update(data, "utf8", "hex");
-    encryptedData += cipher.final("hex");
-    return encryptedData;
+    const keyBuffer = Buffer.from(key, "hex");
+    const cipher = crypto.createCipheriv("aes-256-cbc", keyBuffer, iv);
+
+    let encryptedData =
+        cipher.update(data, "utf8", "base64") + cipher.final("base64");
+    return Buffer.from(encryptedData).toString("base64");
+}
+
+//---------------------Data download from db------------------->
+
+app.get("/recieve", async (req, res) => {
+    try {
+        const data = await UploadData.find();
+
+        const decryptedData = data.map((item) => {
+            const decryptedFullName = decryptData(item.fullname, secretKey);
+            const decryptedCatName = decryptData(item.catName, secretKey);
+            const decryptedEmail = decryptData(item.email, secretKey);
+            const decryptedContact = decryptData(item.contact, secretKey);
+            const decryptedLocation = decryptData(item.location, secretKey);
+
+            return {
+                ...item.toObject(),
+                fullname: decryptedFullName,
+                catName: decryptedCatName,
+                email: decryptedEmail,
+                contact: decryptedContact,
+                location: decryptedLocation,
+            };
+        });
+        res.json(decryptedData);
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+//----------------^^^^^^^^^^^^^^^^^^^^^^^^^----------------->
+function decryptData(encryptedData, key) {
+    try {
+        const buff = Buffer.from(encryptedData, "base64");
+        encryptedData = buff.toString("utf-8");
+        var decipher = crypto.createDecipheriv("aes-256-cbc", key, iv);
+        return (
+            decipher.update(encryptedData, "base64", "utf8") +
+            decipher.final("utf8")
+        );
+    } catch (error) {
+        console.log("Error decrypting data:", error);
+        return null;
+    }
 }

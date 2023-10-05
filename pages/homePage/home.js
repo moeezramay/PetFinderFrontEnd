@@ -13,11 +13,9 @@ function Home() {
     const titleTextRef = useRef(null);
 
     var shiftToFind = (e) => {
-        
         e.preventDefault();
         router.push("../Find/find");
     };
-
 
     const shiftToFound = (e) => {
         e.preventDefault();
@@ -50,7 +48,7 @@ function Home() {
                     <NavBar />
                     {/* Image ------- */}
                     <div className="img-container-homePage">
-                        <Image src="/catI.jpg" alt="Cat" layout="fill" />
+                        <Image src="/images/catI.jpg" alt="Cat" layout="fill" />
                     </div>
                     {/* Image ------- */}
                     <div className="nav-bar-parent-home"></div>
@@ -114,8 +112,9 @@ function Home() {
                             <br /> our mission section
                         </div>
                         <button
-                         className="lostPet-card-button"
-                         onClick={(e) => shiftToFind(e)} >
+                            className="lostPet-card-button"
+                            onClick={(e) => shiftToFind(e)}
+                        >
                             Find My Pet
                         </button>
                     </div>

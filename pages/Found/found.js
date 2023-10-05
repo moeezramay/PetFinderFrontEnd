@@ -19,9 +19,7 @@ function Found() {
     const [email, setEmail] = useState("");
     const [image, setImage] = useState("");
     //------------------^^^^^^^^^^^^^^^^-------------------------
-
     const handleImage = (e) => {
-        console.log("Handle image called");
         const selectedFile = e.target.files[0];
         console.log("Selected file:", selectedFile);
         if (selectedFile) {
@@ -29,9 +27,13 @@ function Found() {
             reader.onload = (e) => {
                 const imageData = e.target.result;
                 console.log("imageData: ", imageData);
-                setImage(imageData); // Store the Base64-encoded image data
+
+                const dataURL = `data:image/jpeg;base64,${btoa(imageData)}`;
+                console.log("dataURL: ", dataURL);
+
+                setImage(dataURL);
             };
-            reader.readAsDataURL(selectedFile);
+            reader.readAsBinaryString(selectedFile);
         }
     };
 
@@ -298,7 +300,7 @@ function Found() {
                                 type="file"
                                 id="imageInput"
                                 name="petImage"
-                                accept="image/*"
+                                accept="image/jpeg,image/png"
                                 onChange={handleImage}
                                 className="file-upload-found"
                                 style={{ color: "white" }}
