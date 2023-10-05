@@ -64,7 +64,6 @@ module.exports = app.post("/uploadedData", async (req, res) => {
     }
     const catName = req.body.catName;
     const fullName = req.body.fullName;
-    const imageBase64 = req.body.image;
     const furColor1 = req.body.furColor1;
     const furColor2 = req.body.furColor2;
     const eyeColor1 = req.body.eyeColor1;

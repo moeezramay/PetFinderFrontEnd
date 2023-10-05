@@ -19,22 +19,49 @@ function Found() {
     const [email, setEmail] = useState("");
     const [image, setImage] = useState("");
     //------------------^^^^^^^^^^^^^^^^-------------------------
-    const handleImage = (e) => {
-        const selectedFile = e.target.files[0];
-        console.log("Selected file:", selectedFile);
-        if (selectedFile) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const imageData = e.target.result;
-                console.log("imageData: ", imageData);
 
-                const dataURL = `data:image/jpeg;base64,${btoa(imageData)}`;
-                console.log("dataURL: ", dataURL);
-
-                setImage(dataURL);
-            };
-            reader.readAsBinaryString(selectedFile);
+    useEffect(() => {
+        // Dynamically load ImageCompressor if needed (e.g., in the browser)
+        if (typeof window !== "undefined") {
+            import("image-compressor.js").then((module) => {
+                // Store it in the window object for later use
+                window.ImageCompressor = module.default || module;
+            });
         }
+    }, []);
+
+    const handleImage = async (e) => {
+        const selectedFile = e.target.files[0];
+        if (selectedFile) {
+            try {
+                const compressedDataURL = await compressImage(selectedFile);
+
+                console.log("Compressed dataURL: ", compressedDataURL);
+
+                setImage(compressedDataURL);
+            } catch (error) {
+                console.error("Error compressing image:", error);
+            }
+        }
+    };
+    //Compressing images function
+    const compressImage = async (file) => {
+        return new Promise((resolve, reject) => {
+            new ImageCompressor(file, {
+                quality: 0.3, // Adjust the quality as needed
+                success(result) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const imageData = e.target.result;
+                        resolve(`data:image/jpeg;base64,${btoa(imageData)}`);
+                    };
+                    reader.readAsBinaryString(result);
+                },
+                error(e) {
+                    reject(e);
+                },
+            });
+        });
     };
 
     //Checks for token

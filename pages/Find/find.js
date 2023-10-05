@@ -5,39 +5,6 @@ import "./find.css";
 
 //write the starting code for react js new file with functional component
 export default function Find() {
-    let finalArrayMock = [
-        {
-            petName: "Smokey",
-            furColor: "grey",
-            eyeColor: "blue",
-            location: "Lahore",
-        },
-        {
-            petName: "Asher",
-            furColor: "blue",
-            eyeColor: "kali",
-            location: "Islamabad",
-        },
-        {
-            petName: "talal",
-            furColor: "mental",
-            eyeColor: "kali",
-            location: "Islamabad",
-        },
-        {
-            petName: "talal",
-            furColor: "mental",
-            eyeColor: "kali",
-            location: "Islamabad",
-        },
-        {
-            petName: "talal",
-            furColor: "mental",
-            eyeColor: "kali",
-            location: "Islamabad",
-        },
-    ];
-
     const [petData, setPetData] = useState([]);
     const [encodedImageData, setEncodedImageData] = useState("");
 
@@ -53,7 +20,6 @@ export default function Find() {
                             className="img-find"
                         />
                     </div>
-                    <div className="line-box-find"></div>
                     <div
                         style={{
                             marginTop: "6%",
