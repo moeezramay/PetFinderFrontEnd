@@ -48,7 +48,7 @@ function Found() {
     const compressImage = async (file) => {
         return new Promise((resolve, reject) => {
             new ImageCompressor(file, {
-                quality: 0.3, // Adjust the quality as needed
+                quality: 0.1, // Adjust the quality as needed
                 success(result) {
                     const reader = new FileReader();
                     reader.onload = (e) => {

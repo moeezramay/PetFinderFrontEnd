@@ -62,6 +62,8 @@ module.exports = app.post("/uploadedData", async (req, res) => {
         res.status(400).json({ error: "Invalid request" });
         return;
     }
+
+    //Saving names
     const catName = req.body.catName;
     const fullName = req.body.fullName;
     const furColor1 = req.body.furColor1;
@@ -72,27 +74,7 @@ module.exports = app.post("/uploadedData", async (req, res) => {
     const contact = req.body.contact;
     const location = req.body.location;
 
-    console.log(
-        "Cat Name: " +
-            catName +
-            " Owner: " +
-            fullName +
-            " Fur Color 1: " +
-            furColor1 +
-            " Fur Color 2: " +
-            furColor2 +
-            " Eye Color 1: " +
-            eyeColor1 +
-            " Eye Color 2: " +
-            eyeColor2 +
-            " Email: " +
-            email +
-            " Contact: " +
-            contact +
-            " Location: " +
-            location
-    );
-
+    //Encrypting names
     const encryptedFullName = encryptData(fullName, secretKey);
     const encryptedCatName = encryptData(catName, secretKey);
     const encryptedEmail = encryptData(email, secretKey);
