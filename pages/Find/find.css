@@ -93,10 +93,10 @@ body {
     padding-bottom: 5%;
 }
 .card-results-find {
-    width: 25%;
+    width: 30%;
     border-radius: 30px;
     background-color: #2758bb;
-    margin-top: 5%;
+    margin: 25px 25px 40px 25px;
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transitions for smooth animation */
 }
 
@@ -142,9 +142,9 @@ body {
 .results-parent-find {
     display: flex;
     justify-content: space-around;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: -1%;
 }
 .pet-info-find {
     font-size: 18px;
@@ -228,6 +228,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 @media (max-width: 700px) {
     .title-text-container-find {
         font-size: 50px;
@@ -251,6 +252,8 @@ body {
     .results-parent-find {
         margin-top: 7%;
         padding-bottom: 60%;
+        display: flex;
+        justify-content: space-between;
     }
     .card-results-find {
         width: 85%;

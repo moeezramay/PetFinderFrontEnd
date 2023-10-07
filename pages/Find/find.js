@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState, useRef } from "react";
 import Image from "next/image";
 import "./find.css";
+import { useRouter } from "next/navigation";
 
 //write the starting code for react js new file with functional component
 export default function Find() {
@@ -13,6 +14,8 @@ export default function Find() {
     const [filterFurColor, setFilterFurColor] = useState("");
     const [filterEyeColor, setFilterEyeColor] = useState("");
     const [filterNameTag, setFilterNameTag] = useState("");
+    const [detailData, setDetailData] = useState([]);
+    var router = useRouter();
 
     //Loads images if they are not loaded
     useEffect(() => {
@@ -30,6 +33,15 @@ export default function Find() {
             console.log("Token found!");
         }
     }, []);
+
+    //Shift to details
+    const shiftToDetails = (e) => {
+        e.preventDefault();
+        router.push({
+            pathname: "../Details/details",
+            query: { petData: JSON.stringify(detailData) }, // Convert the object to a string
+        });
+    };
 
     //Filter Pets
     const filterPets = () => {
@@ -157,7 +169,14 @@ export default function Find() {
                     </div>
 
                     <div className="view-button-container-find">
-                        <button className="view-button-find">
+                        <button
+                            className="view-button-find"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setDetailData(pet);
+                                shiftToDetails(e);
+                            }}
+                        >
                             See Details
                         </button>
                     </div>
@@ -251,11 +270,11 @@ export default function Find() {
                     )}
                 </div>
                 <div className="SepratingLine-find"></div>
+                <div className="pet-results-find">
+                    Showing Latest Results For Reported Pets:
+                </div>
+                <div className="results-parent-find">{petCards}</div>
             </div>
-            <div className="pet-results-find">
-                Showing Latest Results For Reported Pets:
-            </div>
-            <div className="results-parent-find">{petCards}</div>
         </form>
     );
 }

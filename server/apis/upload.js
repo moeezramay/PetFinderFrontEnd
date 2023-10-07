@@ -50,8 +50,12 @@ var UploadData = mongoose.model("UploadData", UploadSchema, "UploadData");
 
 const crypto = require("crypto");
 
-const secretKey = crypto.randomBytes(32);
-const iv = crypto.randomBytes(16);
+const secretKey = Buffer.from(process.env.SECRET_KEY2, "hex");
+
+const iv = Buffer.from(process.env.SECRET_IV, "hex");
+
+const keyBuffer = Buffer.from(process.env.SECRET_KEY2, "hex");
+
 //----------------^^^^^^^^^^^^^^^^^^^^^^^^^----------------->
 
 //---------------------Data Upload to db------------------->
@@ -75,17 +79,18 @@ module.exports = app.post("/uploadedData", async (req, res) => {
     const location = req.body.location;
 
     //Encrypting names
-    const encryptedFullName = encryptData(fullName, secretKey);
-    const encryptedCatName = encryptData(catName, secretKey);
-    const encryptedEmail = encryptData(email, secretKey);
-    const encryptedContact = encryptData(contact, secretKey);
-    const encryptedLocation = encryptData(location, secretKey);
+    const encryptedFullName = encryptData(fullName, secretKey, iv);
+    const encryptedCatName = encryptData(catName, secretKey, iv);
+    const encryptedEmail = encryptData(email, secretKey, iv);
+    const encryptedContact = encryptData(contact, secretKey, iv);
+    const encryptedLocation = encryptData(location, secretKey, iv);
     console.log("works till encryption");
     const imageData = req.body.image;
     console.log("works till image data is defined");
     const encodedImageData = encodeURIComponent(imageData);
     console.log("works till encodedImageData is defined");
 
+    //Saving data to db
     var dataCreate = new UploadData({
         fullname: encryptedFullName,
         catName: encryptedCatName,
@@ -113,13 +118,12 @@ module.exports = app.post("/uploadedData", async (req, res) => {
 //----------------^^^^^^^^^^^^^^^^^^^^^^^^^----------------->
 
 // Function to encrypt data using AES (Advanced Encryption Standard) encryption
-function encryptData(data, key) {
-    const keyBuffer = Buffer.from(key, "hex");
+function encryptData(data, key, iv) {
     const cipher = crypto.createCipheriv("aes-256-cbc", keyBuffer, iv);
 
     let encryptedData =
         cipher.update(data, "utf8", "base64") + cipher.final("base64");
-    return Buffer.from(encryptedData).toString("base64");
+    return encryptedData;
 }
 
 //---------------------Data download from db------------------->
@@ -153,16 +157,9 @@ app.get("/recieve", async (req, res) => {
 
 //----------------^^^^^^^^^^^^^^^^^^^^^^^^^----------------->
 function decryptData(encryptedData, key) {
-    try {
-        const buff = Buffer.from(encryptedData, "base64");
-        encryptedData = buff.toString("utf-8");
-        var decipher = crypto.createDecipheriv("aes-256-cbc", key, iv);
-        return (
-            decipher.update(encryptedData, "base64", "utf8") +
-            decipher.final("utf8")
-        );
-    } catch (error) {
-        console.log("Error decrypting data:", error);
-        return null;
-    }
+    var decipher = crypto.createDecipheriv("aes-256-cbc", key, iv);
+    const decryptedData =
+        decipher.update(encryptedData, "base64", "utf8") +
+        decipher.final("utf8");
+    return decryptedData;
 }
