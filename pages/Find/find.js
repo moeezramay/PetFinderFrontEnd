@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useState, useRef } from "react";
 import Image from "next/image";
 import "./find.css";
 import { useRouter } from "next/navigation";
+import BigLogoWhite from "../../public/bigWhiteLogosvg";
 
-//write the starting code for react js new file with functional component
 export default function Find() {
     const [initialPetData, setInitialPetData] = useState([]);
     const [petData, setPetData] = useState([]);
@@ -14,14 +14,22 @@ export default function Find() {
     const [filterFurColor, setFilterFurColor] = useState("");
     const [filterEyeColor, setFilterEyeColor] = useState("");
     const [filterNameTag, setFilterNameTag] = useState("");
-    const [detailData, setDetailData] = useState([]);
+    const [detailData, setDetailData] = useState({});
+    const [showDetails, setShowDetails] = useState(false);
+
     var router = useRouter();
+
+    const toggleDisplay = () => {
+        setShowButton(!showButton);
+    };
 
     //Loads images if they are not loaded
     useEffect(() => {
         console.log("Initial Pet Data updated:", initialPetData);
         setPetData(initialPetData);
+        setShowDetails(false);
     }, [initialPetData]);
+
     //Checks for token
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -34,65 +42,7 @@ export default function Find() {
         }
     }, []);
 
-    //Shift to details
-    const shiftToDetails = (e) => {
-        e.preventDefault();
-        router.push({
-            pathname: "../Details/details",
-            query: { petData: JSON.stringify(detailData) }, // Convert the object to a string
-        });
-    };
-
-    //Filter Pets
-    const filterPets = () => {
-        // Check if all filter fields are empty
-        const allFiltersEmpty =
-            filterLocation.trim() === "" &&
-            filterFurColor.trim() === "" &&
-            filterEyeColor.trim() === "" &&
-            filterNameTag.trim() === "";
-
-        // Filter pets based on entered criteria
-        const filteredPets = initialPetData.filter((pet) => {
-            const locationMatch =
-                filterLocation.trim() === "" ||
-                pet.location
-                    .toLowerCase()
-                    .includes(filterLocation.toLowerCase());
-
-            const furColorMatch =
-                filterFurColor.trim() === "" ||
-                pet.furColor1
-                    .toLowerCase()
-                    .includes(filterFurColor.toLowerCase());
-
-            const eyeColorMatch =
-                filterEyeColor.trim() === "" ||
-                pet.eyeColor1
-                    .toLowerCase()
-                    .includes(filterEyeColor.toLowerCase());
-
-            const nameTagMatch =
-                filterNameTag.trim() === "" ||
-                pet.catName.toLowerCase().includes(filterNameTag.toLowerCase());
-
-            return (
-                allFiltersEmpty || // Return true if all filters are empty
-                (locationMatch &&
-                    furColorMatch &&
-                    eyeColorMatch &&
-                    nameTagMatch)
-            );
-        });
-
-        // If all filters are empty, reset to show all initial data
-        if (allFiltersEmpty) {
-            setPetData(initialPetData);
-        } else {
-            setPetData(filteredPets);
-        }
-    };
-
+    //Display data if not loaded
     const handleFilterApply = (event) => {
         event.preventDefault();
         filterPets();
@@ -121,11 +71,62 @@ export default function Find() {
         }
     }, []);
 
-    const toggleDisplay = () => {
-        setShowButton(!showButton);
+    //Shift to details
+    // const shiftToDetails = (e) => {
+    //     e.preventDefault();
+    //     console.log("before detail: ", detailData);
+    //     router.push("./Details/details");
+    // };
+
+    //Filter Data Function
+    const filterPets = () => {
+        const allFiltersEmpty =
+            filterLocation.trim() === "" &&
+            filterFurColor.trim() === "" &&
+            filterEyeColor.trim() === "" &&
+            filterNameTag.trim() === "";
+
+        const filteredPets = initialPetData.filter((pet) => {
+            const locationMatch =
+                filterLocation.trim() === "" ||
+                pet.location
+                    .toLowerCase()
+                    .includes(filterLocation.toLowerCase());
+
+            const furColorMatch =
+                filterFurColor.trim() === "" ||
+                pet.furColor1
+                    .toLowerCase()
+                    .includes(filterFurColor.toLowerCase());
+
+            const eyeColorMatch =
+                filterEyeColor.trim() === "" ||
+                pet.eyeColor1
+                    .toLowerCase()
+                    .includes(filterEyeColor.toLowerCase());
+
+            const nameTagMatch =
+                filterNameTag.trim() === "" ||
+                pet.catName.toLowerCase().includes(filterNameTag.toLowerCase());
+
+            return (
+                allFiltersEmpty ||
+                (locationMatch &&
+                    furColorMatch &&
+                    eyeColorMatch &&
+                    nameTagMatch)
+            );
+        });
+
+        if (allFiltersEmpty) {
+            setPetData(initialPetData);
+        } else {
+            setPetData(filteredPets);
+        }
     };
 
-    const petCards =
+    //Display Pet Cards
+    const displayPetCards =
         petData.length > 0 ? (
             petData.map((pet, index) => (
                 <div className="card-results-find" key={index}>
@@ -174,7 +175,7 @@ export default function Find() {
                             onClick={(e) => {
                                 e.preventDefault();
                                 setDetailData(pet);
-                                shiftToDetails(e);
+                                setShowDetails(true);
                             }}
                         >
                             See Details
@@ -183,8 +184,100 @@ export default function Find() {
                 </div>
             ))
         ) : (
-            <div className="No-data-find">[No Data To Show]</div>
+            <div className="No-data-find">Loading Data</div>
         );
+
+    //Display card details
+    const CardDetails = () => {
+        console.log("Show state", showDetails);
+        return (
+            <div className="parent-container-details">
+                <div className="shade-container-details"></div>
+                <div className="card-details-containers-details">
+                    <div className="details-icon-container-details">
+                        <BigLogoWhite />
+                    </div>
+                    <div className="subDetails-container-details">
+                        <div
+                            style={{
+                                textAlign: "center",
+                                fontSize: "26px",
+                                color: "white",
+                                fontWeight: "bold",
+                                marginTop: "5%",
+                            }}
+                        >
+                            Details
+                        </div>
+                        <div style={{ marginLeft: "5%", paddingBottom: "5%" }}>
+                            <div className="container-details-heading">
+                                <div>Catname:</div>
+                                <div className="ans-text-details">
+                                    {detailData.catName}
+                                </div>
+                            </div>
+                            <div className="container-details-heading">
+                                <div>Eye Color 1:</div>
+                                <div className="ans-text-details">
+                                    {detailData.eyeColor1}
+                                </div>
+                            </div>
+                            <div className="container-details-heading">
+                                <div>Eye Color 2:</div>
+                                <div className="ans-text-details">
+                                    {detailData.eyeColor2}
+                                </div>
+                            </div>
+                            <div className="container-details-heading">
+                                <div>Fur Color 1:</div>
+                                <div className="ans-text-details">
+                                    {detailData.furColor1}
+                                </div>
+                            </div>
+                            <div className="container-details-heading">
+                                <div>Fur Color 2:</div>
+                                <div className="ans-text-details">
+                                    {detailData.furColor2}
+                                </div>
+                            </div>
+                            <div className="container-details-heading">
+                                <div>Location:</div>
+                                <div className="ans-text-details">
+                                    {detailData.location}
+                                </div>
+                            </div>
+                            <div className="container-details-heading">
+                                <div>Uploader Name:</div>
+                                <div className="ans-text-details">
+                                    {detailData.fullname}
+                                </div>
+                            </div>
+                            <div className="container-details-heading">
+                                <div>Email: </div>
+                                <div className="ans-text-details">
+                                    {detailData.email}
+                                </div>
+                            </div>
+                            <div className="container-details-heading">
+                                <div>Phone Number:</div>
+                                <div className="ans-text-details">
+                                    {detailData.contact}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="filter-container-close-button ">
+                            <button
+                                className="details-button-close"
+                                onClick={() => setShowDetails(false)}
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    };
 
     return (
         <form>
@@ -273,7 +366,8 @@ export default function Find() {
                 <div className="pet-results-find">
                     Showing Latest Results For Reported Pets:
                 </div>
-                <div className="results-parent-find">{petCards}</div>
+                <div className="results-parent-find">{displayPetCards}</div>
+                <div>{showDetails ? <CardDetails /> : <div>f</div>}</div>
             </div>
         </form>
     );
