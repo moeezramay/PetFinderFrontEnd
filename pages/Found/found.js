@@ -18,6 +18,11 @@ function Found() {
     const [contact, setContact] = useState("");
     const [email, setEmail] = useState("");
     const [image, setImage] = useState("");
+    const [validEmail, setValidEmail] = useState(false);
+    const [validContact, setValidContact] = useState(false);
+    const [checkUpload, setCheckUpload] = useState("");
+    const [checkUpload2, setCheckUpload2] = useState("");
+
     //------------------^^^^^^^^^^^^^^^^-------------------------
 
     useEffect(() => {
@@ -30,6 +35,41 @@ function Found() {
         }
     }, []);
 
+    //Checks emai;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    useEffect(() => {
+        checkEmail();
+    }, [email]);
+
+    const checkEmail = () => {
+        if (emailPattern.test(email) || email === "" || email === " ") {
+            console.log("Email is valid");
+            setValidEmail(true);
+        } else {
+            console.log("Email is invalid");
+            setValidEmail(false);
+        }
+    };
+
+    //Checks contact number;
+    const contactPattern = /^\+92\d{10}$/;
+
+    useEffect(() => {
+        checkContact();
+    }, [contact]);
+
+    const checkContact = () => {
+        if (contactPattern.test(contact)) {
+            console.log("Contact is valid");
+            setValidContact(true);
+        } else {
+            console.log("Contact is invalid");
+            setValidContact(false);
+        }
+    };
+
+    //Image compression
     const handleImage = async (e) => {
         const selectedFile = e.target.files[0];
         if (selectedFile) {
@@ -80,6 +120,16 @@ function Found() {
     const HandleSubmit = async (e) => {
         e.preventDefault();
         console.log("submit pressed");
+        if (validContact === false) {
+            setCheckUpload2("Please enter a valid contact number");
+            return;
+        }
+
+        if (validEmail === false) {
+            setCheckUpload("Please enter a valid email address ");
+            return;
+        }
+
         try {
             const res = await fetch(
                 "http://localhost:8080/upload/uploadedData",
@@ -334,6 +384,17 @@ function Found() {
                                 required
                             />
                         </div>
+
+                        {validEmail === false && (
+                            <div className="email-validation-error-found">
+                                {checkUpload}
+                            </div>
+                        )}
+                        {validContact === false && (
+                            <div className="email-validation-error-found">
+                                {checkUpload2}
+                            </div>
+                        )}
                         <div className="save-button-parent-found">
                             <button type="submit" className="save-button-found">
                                 Save & Continue

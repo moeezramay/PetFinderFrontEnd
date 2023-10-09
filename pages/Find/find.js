@@ -217,29 +217,33 @@ export default function Find() {
                                 </div>
                             </div>
                             <div className="container-details-heading">
-                                <div>Eye Color 1:</div>
+                                <div>Eye Color:</div>
                                 <div className="ans-text-details">
                                     {detailData.eyeColor1}
                                 </div>
                             </div>
-                            <div className="container-details-heading">
-                                <div>Eye Color 2:</div>
-                                <div className="ans-text-details">
-                                    {detailData.eyeColor2}
+                            {detailData.eyeColor2 !== "" && (
+                                <div className="container-details-heading">
+                                    <div>Eye Color 2:</div>
+                                    <div className="ans-text-details">
+                                        {detailData.eyeColor2}
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                             <div className="container-details-heading">
-                                <div>Fur Color 1:</div>
+                                <div>Fur Color:</div>
                                 <div className="ans-text-details">
                                     {detailData.furColor1}
                                 </div>
                             </div>
-                            <div className="container-details-heading">
-                                <div>Fur Color 2:</div>
-                                <div className="ans-text-details">
-                                    {detailData.furColor2}
+                            {detailData.furColor2 !== "" && (
+                                <div className="container-details-heading">
+                                    <div>Fur Color 2:</div>
+                                    <div className="ans-text-details">
+                                        {detailData.furColor2}
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                             <div className="container-details-heading">
                                 <div>Location:</div>
                                 <div className="ans-text-details">
@@ -252,32 +256,36 @@ export default function Find() {
                                     {detailData.fullname}
                                 </div>
                             </div>
-                            <div className="container-details-heading">
-                                <div>Email: </div>
-                                <div className="ans-text-details">
-                                    {detailData.email}
+                            {detailData.email !== "" && (
+                                <div className="container-details-heading">
+                                    <div>Email:</div>
+                                    <div className="ans-text-details">
+                                        {detailData.email}
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                             <div className="container-details-heading">
                                 <div>Phone Number:</div>
                                 <div className="ans-text-details">
                                     {detailData.contact}
                                 </div>
                             </div>
-                        </div>
-                        <div className="filter-container-close-button ">
-                            <button
-                                className="details-button-close"
-                                onClick={() => setShowDetails(false)}
-                            >
-                                Close
-                            </button>
+                            <div className="filter-container-close-button ">
+                                <button
+                                    className="details-button-close"
+                                    onClick={() => setShowDetails(false)}
+                                >
+                                    Close
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         );
     };
+
+    //-------------------RETURN-------------------->
 
     return (
         <form>

@@ -1,26 +1,26 @@
 {
-  "name": "moeezpetfinder",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "dotenv": "^16.3.1",
-    "eslint": "8.49.0",
-    "eslint-config-next": "13.5.1",
-    "image-compression": "^0.0.6",
-    "image-compressor.js": "^1.1.4",
-    "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.1.0",
-    "next": "13.5.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
-  "devDependencies": {
-    "@types/jsonwebtoken": "^9.0.3"
-  }
+    "name": "moeezpetfinder",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "dotenv": "^16.3.1",
+        "eslint": "8.49.0",
+        "eslint-config-next": "13.5.1",
+        "image-compression": "^0.0.6",
+        "image-compressor.js": "^1.1.4",
+        "jsonwebtoken": "^9.0.2",
+        "mongodb": "^6.1.0",
+        "next": "13.5.1",
+        "react": "18.2.0",
+        "react-dom": "18.2.0"
+    },
+    "devDependencies": {
+        "@types/jsonwebtoken": "^9.0.3"
+    }
 }

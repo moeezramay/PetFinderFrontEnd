@@ -200,6 +200,12 @@ input[type="file"]::file-selector-button {
     background-color: white;
     border: none;
 }
+.email-validation-error-found {
+    color: red;
+    font-size: 15px;
+    margin-left: 10%;
+    margin-top: 2%;
+}
 @media (max-width: 700px) {
     .title-found {
         width: 100%;
