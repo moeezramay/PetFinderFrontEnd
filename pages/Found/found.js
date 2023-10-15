@@ -179,7 +179,7 @@ function Found() {
             <div className="parent-div-found">
                 <div className="top-title-container-found">
                     <div className="title-found">
-                        Help Find Someone's Pet <br />
+                        Help Find Someones Pet <br />
                         Today <br />
                     </div>
                     <div className="title-notify-found">

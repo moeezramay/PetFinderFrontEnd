@@ -7,7 +7,7 @@ import ShareIcon from "./../../public/shareIconsvg";
 import MiniLogo from "../../public/miniLogoBlacksvg";
 import { useRouter } from "next/navigation";
 
-function signIn() {
+function SignIn() {
     const [userFound, setUserFound] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -170,4 +170,4 @@ function signIn() {
     );
 }
 
-export default signIn;
+export default SignIn;
