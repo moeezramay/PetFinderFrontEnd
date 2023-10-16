@@ -1,6 +1,5 @@
-"use client";
 import { useState } from "react";
-import Loader from "../../pages/Loader/loader";
+import Loader from "../../pages/loader/loader";
 
 export default function Home() {
     return (
