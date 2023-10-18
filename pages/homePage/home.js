@@ -48,14 +48,14 @@ function Home() {
                     <NavBar />
                     {/* Image ------- */}
                     <div className="img-container-homePage">
-                        <Image src="/images/catI.jpg" alt="Cat" layout="fill"  loading="lazy"/>
+                        <Image src="/images/catI.jpg" alt="Cat" layout="fill" priority={true}/>
                     </div>
                     {/* Image ------- */}
                     <div className="nav-bar-parent-home"></div>
                     {/* Title Text --- */}
                     <div className="HomePage-Title-Text" ref={titleTextRef}>
                         Connecting Hearts
-                        <div style={{ marginLeft: "20%", display: "flex" }}>
+                        <div style={{ marginLeft: "20%", display: "flex", color:"rgb(222, 215, 215)"}}>
                             and
                             <div style={{ marginLeft: "4%", color: "#2758BB" }}>
                                 Paws
