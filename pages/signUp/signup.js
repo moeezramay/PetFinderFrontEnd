@@ -29,7 +29,7 @@ function SignUp() {
     //------------------Checks if server is online---------------------
     useEffect(() => {
         try {
-            fetch("http://localhost:8080/sign/check")
+            fetch("https://mern-backend-moeez-apis.onrender.com/sign/check")
                 .then((response) => {
                     console.log("response: ", response.message);
                     if (!response.ok) {
@@ -119,7 +119,7 @@ function SignUp() {
 
         //Send data to backend
         try {
-            const res = await fetch("http://localhost:8080/sign/signUp", {
+            const res = await fetch("https://mern-backend-moeez-apis.onrender.com/sign/signUp", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

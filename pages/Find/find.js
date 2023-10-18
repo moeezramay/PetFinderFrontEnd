@@ -52,7 +52,7 @@ export default function Find() {
     useEffect(() => {
         setShowButton(true);
         try {
-            fetch("http://localhost:8080/upload/recieve", {
+            fetch("https://mern-backend-moeez-apis.onrender.com/upload/recieve", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

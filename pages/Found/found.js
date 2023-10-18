@@ -132,7 +132,7 @@ function Found() {
 
         try {
             const res = await fetch(
-                "http://localhost:8080/upload/uploadedData",
+                "https://mern-backend-moeez-apis.onrender.com/upload/uploadedData",
                 {
                     method: "POST",
                     headers: {
