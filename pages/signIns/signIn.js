@@ -34,7 +34,7 @@ function SignIn() {
             return;
         }
         try {
-            const res = await fetch("http://localhost:8080/sign/signIn", {
+            const res = await fetch("https://mern-backend-moeez-apis.onrender.com/sign/signIn", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
